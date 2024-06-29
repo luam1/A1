@@ -1,53 +1,124 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Livraria Do Aluno Digital</title>
-<style>
-  body { font-family: 'Arial', sans-serif; margin: 0; padding: 0; }
-  header { background-color: #00308a; color: white; text-align: center; padding: 10px; }
-  nav { display: flex; justify-content: space-around; background-color: #00308a; }
-  nav a { color: white; padding: 14px 20px; text-decoration: none; }
-  nav a:hover { background-color: #ddd; color: black; }
-  .container { padding: 20px; }
-  footer { background-color: #333; color: white; text-align: center; padding: 10px; position: fixed; bottom: 0; width: 100%; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Interativo</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+} 
 
-<header>
+header {
+    background-color: #333;
+    padding: 1em;
+} 
 
-</header>
+.navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+} 
 
-<nav>
-  <a href="index3.html">Novidades</a>
-  <a href="index4.html">Mais Vendidos</a>
-  <a href="index5.html">Ofertas</a>
-  <a href="index6.html">Contato</a>
-</nav>
+.navbar li {
+    display: inline;
+} 
 
-<div class="container">
-  <section id="novidades">
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5em 1em;
+} 
 
-  </section>
+.navbar a:hover {
+    background-color: #575757;
+    border-radius: 4px;
+} 
 
-  <section id="maisvendidos">
+main {
+    padding: 2em;
+} 
 
-  </section>
+button {
+    padding: 1em;
+    margin: 1em 0;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    font-size: 1em;
+} 
 
-  <section id="ofertas">
+.like-btn {
+    background-color: #007BFF;
+    color: white;
+} 
 
-  </section>
+.like-btn.liked {
+    background-color: #0056b3;
+} 
 
-  <section id="contato">
+.fav-btn {
+    background-color: #FF4500;
+    color: white;
+} 
 
-  </section>
-</div>
+.fav-btn.favorited {
+    background-color: #cc3700;
+}
+</style>
+    <header>
+        <nav>
+            <ul class="navbar">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header> 
 
-<footer>
-  <p>© 2024 </p>
-</footer>
+    <main>
+        <section id="home">
+            <h1>Bem-vindo ao Site Interativo</h1>
+            <button class="like-btn" onclick="toggleLike()">Like</button>
+            <button class="fav-btn" onclick="toggleFavorite()">Favorito</button>
+        </section> 
 
+        <section id="about">
+            <h2>Sobre Nós</h2>
+            <p>Informações sobre a empresa.</p>
+        </section> 
+
+        <section id="services">
+            <h2>Serviços</h2>
+            <p>Descrição dos serviços oferecidos.</p>
+        </section> 
+
+        <section id="contact">
+            <h2>Contato</h2>
+            <p>Informações de contato.</p>
+        </section>
+    </main> 
+
+    <script src="scripts.js">
+function toggleLike() {
+    const likeButton = document.querySelector('.like-btn');
+    likeButton.classList.toggle('liked');
+    likeButton.textContent = likeButton.classList.contains('liked') ? 'Liked' : 'Like';
+} 
+
+function toggleFavorite() {
+    const favButton = document.querySelector('.fav-btn');
+    favButton.classList.toggle('favorited');
+    favButton.textContent = favButton.classList.contains('favorited') ? 'Favorited' : 'Favorito';
+}
+</script>
 </body>
 </html>
