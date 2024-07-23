@@ -39,7 +39,11 @@
         }
 
         @media screen and (max-width: 600px) {
-            .navbar a:not(:first-child) {display: none;}
+            .navbar a {
+                float: none;
+                display: block;
+                text-align: center;
+            }
             .navbar a.icon {
                 float: right;
                 display: block;
@@ -47,7 +51,11 @@
         }
 
         @media screen and (max-width: 600px) {
-            .navbar.responsive {position: relative;}
+            .navbar.responsive {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+            }
             .navbar.responsive .icon {
                 position: absolute;
                 right: 0;
