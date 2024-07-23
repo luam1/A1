@@ -13,21 +13,27 @@
 
         body {
             font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
         }
 
         .navbar {
-            overflow: hidden;
             background-color: #333;
-            position: relative;
-            height: 100vh; /* Ajuste conforme necessário */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
         }
 
         .navbar a {
-            position: absolute;
             color: white;
             text-align: center;
             padding: 14px 20px;
             text-decoration: none;
+            width: 100%;
         }
 
         .navbar a:hover {
@@ -39,37 +45,8 @@
             display: none;
         }
 
-        .navbar a:nth-child(1) {
-            top: 10%;
-            left: 5%;
-            transform: rotate(-45deg);
-        }
-
-        .navbar a:nth-child(2) {
-            top: 30%;
-            left: 15%;
-            transform: rotate(-45deg);
-        }
-
-        .navbar a:nth-child(3) {
-            top: 50%;
-            left: 25%;
-            transform: rotate(-45deg);
-        }
-
-        .navbar a:nth-child(4) {
-            top: 70%;
-            left: 35%;
-            transform: rotate(-45deg);
-        }
-
         @media screen and (max-width: 600px) {
-            .navbar {
-                height: auto;
-            }
             .navbar a {
-                position: static;
-                transform: none;
                 display: block;
                 text-align: center;
                 float: none;
