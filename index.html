@@ -1,91 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu Responsivo</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+Para garantir que o tema específico pesquisado redirecione para a seção correspondente, você pode modificar sua função `searchBooks` para que, ao encontrar o termo correspondente, ela role a página para a seção relevante. Aqui está uma versão modificada do seu código que adiciona esse comportamento:
 
-        body {
-            font-family: Arial, sans-serif;
-        }
+```javascript
+function searchBooks() {
+    var input = document.getElementById('searchInput').value.toLowerCase();
+    var sections = ['a1', 'a2', 'a3', 'a4', 'a5', 'a6', 'a7', 'a8', 'a9', 'a10', 'a11', 'a12'];
+    var firstMatch = null;
 
-        .navbar {
-            overflow: hidden;
-            background-color: #333;
-            display: flex;
-            flex-direction: column-reverse;
-        }
-
-        .navbar a {
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 14px 20px;
-            text-decoration: none;
-        }
-
-        .navbar a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-
-        .navbar .icon {
-            display: none;
-        }
-
-        @media screen and (max-width: 600px) {
-            .navbar a:not(:first-child) {display: none;}
-            .navbar a.icon {
-                display: block;
-                align-self: flex-end;
+    sections.forEach(function(id) {
+        var section = document.getElementById(id);
+        var buttons = section.getElementsByTagName('button');
+        var found = false;
+        for (var i = 0; i < buttons.length; i++) {
+            if (buttons[i].textContent.toLowerCase().includes(input)) {
+                found = true;
+                if (!firstMatch) {
+                    firstMatch = section;  // Store the first match
+                }
+                break;
             }
         }
-
-        @media screen and (max-width: 600px) {
-            .navbar.responsive {
-                position: relative;
-            }
-            .navbar.responsive .icon {
-                position: absolute;
-                right: 0;
-                top: 0;
-            }
-            .navbar.responsive a {
-                display: block;
-                text-align: left;
-            }
-        }
-    </style>
-</head>
-<body>
-
-<div class="navbar" id="myNavbar">  
-    <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">
-        &#9776;
-    </a>
-    <a href="#home">Home</a>
-    <a href="#services">Services</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-  
-</div>
-
-<script>
-    function toggleMenu() {
-        var x = document.getElementById("myNavbar");
-        if (x.className === "navbar") {
-            x.className += " responsive";
+        if (found) {
+            section.classList.remove('hidden');
         } else {
-            x.className = "navbar";
+            section.classList.add('hidden');
         }
-    }
-</script>
+    });
 
-</body>
-</html>
+    // Scroll to the first matching section if any
+    if (firstMatch) {
+        firstMatch.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+```
+
+### Explicação:
+
+1. **`firstMatch`**: Variável para armazenar a primeira seção que corresponde ao termo pesquisado.
+2. **Verificação de Match**: A função agora armazena a primeira seção que contém o botão com o texto correspondente ao termo de pesquisa.
+3. **Rolagem Suave**: Se uma seção correspondente for encontrada, a página rola suavemente até essa seção usando o método `scrollIntoView`.
+
+Esse script pressupõe que cada seção (`a1`, `a2`, etc.) tem um `id` único e que o layout da página permite a rolagem para esses elementos. Certifique-se de que o estilo CSS para a classe `hidden` esteja corretamente definido para esconder as seções.
