@@ -1,42 +1,120 @@
-Para garantir que o tema específico pesquisado redirecione para a seção correspondente, você pode modificar sua função `searchBooks` para que, ao encontrar o termo correspondente, ela role a página para a seção relevante. Aqui está uma versão modificada do seu código que adiciona esse comportamento:
-
-```javascript
-function searchBooks() {
-    var input = document.getElementById('searchInput').value.toLowerCase();
-    var sections = ['a1', 'a2', 'a3', 'a4', 'a5', 'a6', 'a7', 'a8', 'a9', 'a10', 'a11', 'a12'];
-    var firstMatch = null;
-
-    sections.forEach(function(id) {
-        var section = document.getElementById(id);
-        var buttons = section.getElementsByTagName('button');
-        var found = false;
-        for (var i = 0; i < buttons.length; i++) {
-            if (buttons[i].textContent.toLowerCase().includes(input)) {
-                found = true;
-                if (!firstMatch) {
-                    firstMatch = section;  // Store the first match
-                }
-                break;
-            }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background: linear-gradient(black, rgb(180, 7, 7), black);
+            background-size: cover;
+            background-position: center;
+            font-family: 'Times New Roman', Times, serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;           
+            flex-direction: column;
         }
-        if (found) {
-            section.classList.remove('hidden');
-        } else {
-            section.classList.add('hidden');
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
         }
-    });
 
-    // Scroll to the first matching section if any
-    if (firstMatch) {
-        firstMatch.scrollIntoView({ behavior: 'smooth' });
-    }
-}
-```
+        .avatar {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
 
-### Explicação:
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-1. **`firstMatch`**: Variável para armazenar a primeira seção que corresponde ao termo pesquisado.
-2. **Verificação de Match**: A função agora armazena a primeira seção que contém o botão com o texto correspondente ao termo de pesquisa.
-3. **Rolagem Suave**: Se uma seção correspondente for encontrada, a página rola suavemente até essa seção usando o método `scrollIntoView`.
+        .hero {
+            background-color: #FFFFFF;
+            padding: 50px 0;
+            text-align: center;
+        }
 
-Esse script pressupõe que cada seção (`a1`, `a2`, etc.) tem um `id` único e que o layout da página permite a rolagem para esses elementos. Certifique-se de que o estilo CSS para a classe `hidden` esteja corretamente definido para esconder as seções.
+        .hero h1 {
+            margin: 0;
+        }
+
+        .products-container {
+            overflow-x: auto;
+            white-space: nowrap;
+            margin-bottom: 20px;
+        }
+
+        .product {
+            display: inline-block;
+            width: 300px; /* Largura ajustada para mais espaço */
+            min-height: 200px; /* Altura mínima para comportar mais texto */
+            margin: 0 10px;
+            background-color: #000000;
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            vertical-align: top;
+            border-radius: 8px;
+            color: crimson;
+            overflow-y: auto; /* Adiciona rolagem vertical se o texto for muito longo */
+        }
+
+        .product img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .product h3 {
+            font-size: 16px; /* Ajuste o tamanho da fonte conforme necessário */
+            margin: 10px 0;
+        }
+
+        .product p {
+            font-size: 14px; /* Ajuste o tamanho da fonte conforme necessário */
+            color: crimson;
+            white-space: normal; /* Permite quebras de linha */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="avatar">
+            <a href="index2.html"><img src="https://media.tenor.com/ElbgxcWgYpIAAAAe/fatal-error-sans-undertale-au.png" alt="Avatar"></a>
+        </div>
+    </div>
+
+    <div class="hero" id="home"></div>
+        <div class="container">
+
+        </div>
+    </div>
+<div class="container">
+        <div class="products-container">
+            <div class="product">
+                <img src="" alt="" height="" width="">
+                <p>Texto longo de exemplo que se estende para várias linhas. Este é um exemplo de como o conteúdo pode se expandir verticalmente sem cortar o texto.</p>
+            </div>
+            <div class="product">
+                <img src="" alt="" height="" width="">
+                <p>Outro exemplo de texto mais longo que se adapta ao novo layout e permite rolagem se for necessário.</p>
+            </div>
+            <!-- Continue adicionando produtos conforme necessário -->
+        </div>
+    </div>
+
+</body>
+</html>
